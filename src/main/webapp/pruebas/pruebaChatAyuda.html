@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+                font-family: "Bahnschrift Light";
+            }
+            
+            .contenedor{
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;                
+                gap: 15px;
+                margin-top: 15px;
+            }
+            .principal{                
+                width: 500px;
+                height: 600px;
+                background-color: green;
+                border-radius: 4px;
+            }
+            .extra{                
+                width: 200px;
+                height: 200px;
+                background-color: yellow;
+                border-radius: 4px;
+            }    
+            .icono{
+                height: 30px;
+                width: 30px;    
+                padding: 4px 4px;   
+                transition: 0.5s;
+            }
+            .abrirChat{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #6B1740;
+                height: 50px;
+                width: 50px;                    
+                transition: 0.5s;
+                border-radius: 50%;
+                bottom: 0px;
+                right: 0px;
+                margin: 20px 20px;
+                position: flex;
+                /*NOTA: cuando pones flex es como poner absolute, funcionan igual los righ:0 y top:0 y asi*/                
+            } 
+            .abrirChat:hover{    
+                cursor: pointer;    
+                background-color: rgba(0, 0, 0, 0.5); 
+            }   
+            .cConversacion{
+                position: flex;
+                bottom: 0px;
+                right: 60px;
+                margin: 20px 20px;                
+                height: 300px;
+                width: 500px;
+                background-color: red;
+                display: none;                
+            }
+        </style>
+    </head>
+    <body>
+        <div class="contenedor">
+            <div class="principal"></div>
+            <div class="extra"></div>
+            <div class="abrirChat">
+                <img src="utileria/media/iconos/chat.png" alt="alt" title="Abrir chat" class="icono">                
+            </div>
+            <div class="cConversacion"></div>
+        </div>
+        <script src="utileria/librerias/jquery3.6.1.js"></script>
+        <script>
+            $('.abrirChat').click(function(){
+                if ($('.chat').is(':hidden'))
+                    $('.chat').slideDown();
+                else
+                    $('.chat').slideUp();
+            });
+        </script>
+    </body>
+</html>

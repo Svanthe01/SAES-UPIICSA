@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.8">        
+        <style>            
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+            .header {    
+                top: 0px;
+                width: 100%;                
+                background-image: url(utileria/media/fondoUpiicsa.png);
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                color: white;
+                position: sticky;
+                height: 75px;                   
+                z-index: 100;
+            }
+            .cuerpo {                        
+                width: 100%;
+                height: 3000px;
+                color: white;
+                background-color: whitesmoke;                                
+                text-align: center;                
+            }                        
+            .header_logo {
+                float: left;
+                font-family: "Bahnschrift Light";   
+                margin-top: 23px;
+                margin-left: 10px;
+                font-size: 30px;                    
+            }
+            .icono{
+                height: 30px;
+                width: 30px;    
+                padding: 4px 4px;   
+                transition: 0.5s;
+            }
+            .icono.ham:hover,.icono.conf:hover,.icono.notif:hover,.icono.user:hover,.icono.cruz:hover{    
+                cursor: pointer;    
+                border-radius: 8px;
+                background-color: rgba(0, 0, 0, 0.4); 
+            }           
+            .icono.cruz{  
+                display: none;
+                top: 0px;
+                float: right;    
+                margin-top: 20px;
+                margin-right: 15px; 
+            }
+            .icono.ham{                   
+                float: left;    
+                margin-top: 20px;
+                margin-left: 15px; 
+            }                                   
+            .icono.conf,.icono.notif,.icono.user{    
+                float: right;        
+                margin-top: 20px;
+                margin-right: 15px;  
+            }
+            .engrane{
+                position: fixed;
+                top: 75px;
+                right: 0px;
+                padding: 15px 15px;                
+                height: 170px;
+                width: 300px;
+                background-color: red;
+                display: none;                
+                z-index: 100;
+            }
+            .campana{
+                position: fixed;
+                top: 75px;
+                right: 0px;
+                padding: 15px 15px;                
+                height: 170px;
+                width: 300px;
+                background-color: gray;
+                display: none;                
+                z-index: 100;
+            }
+            
+            /* CARRUSEL */        
+            .slider {
+                margin: 0 auto;
+                max-width: 100%;
+            }
+
+            .slide_viewer {
+                height: 340px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .slide_group {
+                height: 100%;
+                position: relative;
+                width: 100%;
+            }
+
+            .slide {
+                display: none;
+                height: 100%;
+                position: absolute;
+                width: 100%;
+            }
+
+            .slide:first-child {
+                display: block;
+            }
+
+            .slide:nth-of-type(1) {
+                background: #D7A151;
+            }
+
+            .slide:nth-of-type(2) {
+                background: #F4E4CD;
+            }
+
+            .slide:nth-of-type(3) {
+                background: #C75534;
+            }
+
+            .slide:nth-of-type(4) {
+                background: #D1D1D4;
+            }
+
+            .slide_buttons {
+                left: 0;
+                position: relative;
+                right: 0;
+                text-align: center;
+            }
+
+            a.slide_btn {
+                color: #474544;
+                font-size: 42px;
+                margin: 0 0.175em;
+                -webkit-transition: all 0.4s ease-in-out;
+                -moz-transition: all 0.4s ease-in-out;
+                -ms-transition: all 0.4s ease-in-out;
+                -o-transition: all 0.4s ease-in-out;
+                transition: all 0.4s ease-in-out;
+            }
+
+            .slide_btn.active, .slide_btn:hover {
+                color: #428CC6;
+                cursor: pointer;
+            }
+
+            .directional_nav {
+                height: 340px;
+                margin: 0 auto;
+                max-width: 100%;
+                position: relative;
+                top: -380px;
+            }
+
+            .previous_btn {   
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                bottom: 0;
+                left: 30px;
+                margin: auto;
+                position: absolute;
+                top: 0;
+            }
+            
+            .previous_btn img,.next_btn img{
+                height: 30px;
+                width: 30px;
+            }
+            
+            .next_btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                bottom: 0;
+                margin: auto;
+                position: absolute;
+                right: 30px;
+                top: 0;
+            }
+
+            .previous_btn, .next_btn {
+                cursor: pointer;
+                height: 65px;
+                opacity: 0.5;
+                -webkit-transition: opacity 0.4s ease-in-out;
+                -moz-transition: opacity 0.4s ease-in-out;
+                -ms-transition: opacity 0.4s ease-in-out;
+                -o-transition: opacity 0.4s ease-in-out;
+                transition: opacity 0.4s ease-in-out;
+                width: 65px;
+                border-radius: 50%;
+                background-color: rgba(0, 0, 0, 0.4); 
+            }
+
+            .previous_btn:hover, .next_btn:hover {
+                opacity: 1;
+            }
+
+            @media only screen and (max-width: 767px) {
+                .previous_btn {
+                    left: 50px;
+                }
+                .next_btn {
+                    right: 50px;
+                }
+                
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="header">                        
+            <img class="icono ham" src="utileria/media/iconos/menu.png" alt="alt" title="Esconder menu">        
+            <p class="header_logo"><b>SAES</b> UPIICSA</p>
+            <img class="icono notif" src="utileria/media/iconos/notif.png" alt="alt" title="Notificaciones">            
+            <img class="icono conf" src="utileria/media/iconos/conf.png" alt="alt" title="Configuraciones">            
+            <img class="icono user" src="utileria/media/iconos/usuario.png" alt="alt" title="Perfil">            
+        </div>
+        <div class="engrane">
+            
+        </div>
+        <div class="campana">
+            
+        </div>        
+        <div class="cuerpo">
+            <div class="slider">
+                <div class="slide_viewer">
+                    <div class="slide_group" style="left: 0px;">
+                        <div class="slide" style="display: block; left: 0px;">
+                        </div>
+                        <div class="slide" style="display: none; left: 0px;">
+                        </div>
+                        <div class="slide" style="display: none; left: 0px;">
+                        </div>
+                        <div class="slide" style="display: none; left: 0px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide_buttons">    
+            </div>
+
+            <div class="directional_nav">
+                <div class="previous_btn" title="Anterior">
+                    <img src="utileria/media/iconos/izq.png" alt="alt">
+                </div>
+                <div class="next_btn" title="Siguiente">
+                    <img src="utileria/media/iconos/der.png" alt="alt">
+                </div>
+            </div>
+            <div class="infoExtra">
+                
+                
+            </div>
+        </div>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript">   
+            $('.icono.conf').click(function(){                
+                if ($('.engrane').is(':hidden')){
+                    if($('.campana').is(':hidden')){
+                        $('.engrane').slideDown();
+                    }else{
+                        $('.campana').slideUp();
+                        $('.engrane').slideDown();    
+                    }
+                }else{
+                    $('.engrane').slideUp();
+                }
+            }); 
+            
+            $('.icono.notif').click(function(){                
+                if ($('.campana').is(':hidden')){
+                    if($('.engrane').is(':hidden')){
+                        $('.campana').slideDown();
+                    }else{
+                        $('.engrane').slideUp();
+                        $('.campana').slideDown();    
+                    }
+                }else{
+                    $('.campana').slideUp();
+                }
+            }); 
+                    
+            $('.icono2.der.cruz').click(function(){
+                $('.icono2.der.cruz').css("display", "none");
+                $('.menu').css("position", "fixed");
+                $('.menu').addClass('hide');                
+            });
+            $('.icono.ham').click(function(){                
+                if($(window).width() < 700){
+                    $('.icono2.der.cruz').css("display", "block");
+                    $('.menu').css("position", "absolute");
+                    $('.menu').removeClass('hide');
+                }else{
+                    if($('.menu').hasClass('hide')){
+                        $('.menu').removeClass('hide');                
+                        $('.main').removeClass('wide');    
+                    }else{
+                        $('.menu').addClass('hide');                
+                        $('.main').addClass('wide');                                            
+                    }                                                                        
+                }
+            });            
+    
+            /*Carrusel*/  
+            $('.slider').each(function() {
+                var $this = $(this);
+                var $group = $this.find('.slide_group');
+                var $slides = $this.find('.slide');
+                var bulletArray = [];
+                var currentIndex = 0;
+                var timeout;
+
+                function move(newIndex) {
+                    var animateLeft, slideLeft;
+
+                    advance();
+
+                    if ($group.is(':animated') || currentIndex === newIndex) {
+                        return;
+                    }
+
+                    bulletArray[currentIndex].removeClass('active');
+                    bulletArray[newIndex].addClass('active');
+
+                    if (newIndex > currentIndex) {
+                        slideLeft = '100%';
+                        animateLeft = '-100%';
+                    } else {
+                        slideLeft = '-100%';
+                        animateLeft = '100%';
+                    }
+
+                    $slides.eq(newIndex).css({
+                        display: 'block',
+                        left: slideLeft
+                    });
+                    $group.animate({
+                        left: animateLeft
+                    }, function() {
+                        $slides.eq(currentIndex).css({
+                            display: 'none'
+                        });
+                        $slides.eq(newIndex).css({
+                              left: 0
+                        });
+                        $group.css({
+                            left: 0
+                        });
+                        currentIndex = newIndex;
+                    });
+                }
+
+                function advance() {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(function() {
+                        if (currentIndex < ($slides.length - 1)) {
+                            move(currentIndex + 1);
+                        }else {
+                            move(0);
+                        }
+                    }, 10000);
+                }
+
+                $('.next_btn').on('click', function() {
+                    if (currentIndex < ($slides.length - 1)) {
+                        move(currentIndex + 1);
+                    } else {
+                        move(0);
+                    }
+                });
+
+                $('.previous_btn').on('click', function() {
+                    if (currentIndex !== 0) {
+                        move(currentIndex - 1);
+                    } else {
+                        move(3);
+                    }
+                });
+
+                $.each($slides, function(index) {
+                    var $button = $('<a class="slide_btn">&bull;</a>');
+
+                    if (index === currentIndex) {
+                        $button.addClass('active');
+                    }
+                    $button.on('click', function() {
+                        move(index);
+                    }).appendTo('.slide_buttons');
+                    bulletArray.push($button);
+                });
+
+                advance();
+            });
+            
+        </script>
+    </body>
+</html>

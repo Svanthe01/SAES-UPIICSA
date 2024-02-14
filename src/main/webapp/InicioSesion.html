@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>SAES UPIICSA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.7">
+        <style>
+            *{
+                margin:0px;
+                padding:0px;
+                font-family: "Bahnschrift Light";   
+            }
+            .icono{
+                height: 30px;
+                width: 30px;    
+                padding: 4px 4px;   
+                transition: 0.5s;
+            }
+            .icono2{
+                margin-top:4px;
+                height: 18px;
+                width: 18px;    
+                margin-right: 10px;                
+            }            
+            .icono2.der{
+                float: right; 
+                margin-right: 0px;
+            }            
+            .icono.menu:hover, icono.conf:hover{    
+                cursor: pointer;    
+                border-radius: 8px;
+                background-color: rgba(0, 0, 0, 0.5); 
+            }             
+            .menu{     
+                top:0px;
+                width: 310px;
+                height: 100%;
+                position: fixed;
+                background-color: #6B1740;
+                transition: 0.5s;
+                scroll-behavior: inherit;
+                overflow: scroll;
+                overflow-x: hidden;
+                z-index: 101;
+            }        
+            .menu::-webkit-scrollbar {                
+                display: none;
+            }
+            .menu.hide{
+                margin-left: -310px;            
+            }
+            .main.wide{
+                margin-left: 0px;
+            }
+            .main{
+                margin-left: 310px;
+                width: auto;
+                transition: 0.5s;             
+            }            
+            .footer{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 17px;
+                font-family: "Calibri";                
+                height: 80px;
+                background-color: #262626;
+                width: 100%;
+            }
+            .footer a{
+                color: white;
+                font-size: 17px;
+                font-family: "Calibri";                                
+            }
+            .target{
+                margin: 0px;
+                padding: 0px;
+                text-align: center;
+                background-color: whitesmoke;
+                width: auto;
+            }                        
+            .menu ul{                  
+                width: 100%;
+                font-size: 18px;
+                margin: 10px 0px;                
+                list-style: none;
+            }
+            .menu ul ul{
+                display: none;
+            }
+            
+            .menu ul li a{   
+                display: block;
+                padding: 3px 20px;
+                text-decoration: none;
+                color: #fff;  
+            }
+            .menu ul li a:hover{  
+                transition: 0.6s;
+                background-color: rgba(0, 0, 0, 0.5);
+                cursor: pointer;
+            }
+            .titulo{
+                font-family: "Verdana";
+                padding: 13px 15px;                                
+                color: white;                                
+            }   
+            .titulo.un{
+                padding: 25px 15px;                                
+            }   
+            hr {                
+                height: 1px;
+                background-color: white;
+                width: 80%;                
+            }      
+            .icono2.der.cruz{
+                display: none;
+            }
+            @media(max-width:768px){   
+                
+            }
+        </style>
+    </head>
+    <body>        
+        <div class="menu">
+            <h3 class="titulo un">MENU<img class="icono2 der cruz" src="utileria/media/iconos/cruz.png" alt="alt"></h3> 
+            <hr>
+            <ul class="men">
+                <li><a onclick="redirect(3)"><img class="icono2" alt="" src="utileria/media/iconos/hogar.png">Inicio</a></li>
+                <li><a><img class="icono2" alt="" src="utileria/media/iconos/book-open-reader.png">Alumnos
+                        <img class="icono2 der" alt="" src="utileria/media/iconos/angulo-hacia-abajo.png">
+                    </a>
+                    <ul>
+                        <li><a>Datos Personales</a></li>
+                        <li><a>Documentos de Admisión</a></li>
+                        <li><a>Datos Académicos</a></li>
+                        <li><a>Inscripción Actual</a></li>
+                        <li><a>Reinscripciones</a></li>
+                        <li><a>ETS</a></li>
+                        <li><a>ESPA</a></li>
+                        <li><a>Cursos de Recuperación</a></li>
+                        <li><a>Tutores</a></li>
+                        <li><a>Evaluación Docente</a></li>
+                    </ul>                
+                </li>
+                <li><a ><img class="icono2" alt="" src="utileria/media/iconos/users-alt.png">Académica
+                        <img class="icono2 der" alt="" src="utileria/media/iconos/angulo-hacia-abajo.png">
+                    </a>
+                    <ul>
+                        <li><a>Mapa Curricular</a></li>                        
+                        <li><a>Ocupabilidad de Horario</a></li>
+                        <li><a>Calendario de Examenes Ord.</a></li>
+                        <li><a>Calendario de ETS y ESPA</a></li>
+                        <li><a>Equivalencias</a></li>                        
+                    </ul>
+                </li>
+                <li><a><img class="icono2" alt="" src="utileria/media/iconos/libro-marcador.png">Reglamento</a></li>
+                <li><a><img class="icono2" alt="" src="utileria/media/iconos/interrogation.png">Ayuda
+                        <img class="icono2 der" alt="" src="utileria/media/iconos/angulo-hacia-abajo.png">
+                    </a>
+                    <ul>
+                        <li><a onclick="redirect(1)">Chat de Ayuda</a></li>                        
+                        <li><a>Guía de Bienvenida</a></li>
+                        <li><a>Manual de Alumnos</a></li>
+                        <li><a>Preguntas Frecuentes</a></li>                        
+                    </ul>
+                </li>
+                <li><a onclick="redirect(2)"><img class="icono2" alt="" src="utileria/media/iconos/documento-firmado.png">Trámites</a></li>
+            </ul>    
+            <br>
+            
+            <h3 class="titulo">ACCESOS RÁPIDOS</h3>
+            <hr>
+            <ul class="men">
+                <li><a><img class="icono2" alt="" src="utileria/media/iconos/lineas-de-calendario.png">Calendario Escolar</a></li>
+                <li><a><img class="icono2" alt="" src="utileria/media/iconos/prueba.png">Calendario de ETS y ESPA</a></li>
+                <li><a><img class="icono2" alt="" src="utileria/media/iconos/editar.png">Electivas</a></li>                
+                <li><a><img class="icono2" alt="" src="utileria/media/iconos/mas.png">Agregar acceso</a></li>                
+            </ul>                       
+        </div>
+        <div class="main">            
+            <div class="target"></div>                      
+            <div class="footer">&copy; 2022 SAES&nbsp;<a href="https://www.ipn.mx/">IPN</a> &nbsp; <a href="https://www.ipn.mx/dae/">IPN-DAE</a></div>
+        </div>        
+        <script src="utileria/librerias/jquery3.6.1.js"></script>
+        <script>
+            $( document ).ready(function() {
+                if($(window).width() < 700){                    
+                    $('.menu').addClass('hide');                
+                    $('.main').addClass('wide');
+                }
+                $(".target").load("mainInicioSesion.html");
+            });
+            
+            function redirect(valor){
+                switch(valor){
+                    case 1:
+                        $(".target").load("mainChatAyuda.jsp");
+                        break;
+                    case 2:
+                        $(".target").load("mainTramites.jsp");
+                        break;
+                    case 3:         
+                        $(".target").load("mainInicioSesion.html");
+                }
+            }
+                                    
+            $(window).resize(function(){
+                if($(window).width() < 700){                    
+                    $('.menu').addClass('hide');                
+                    $('.main').addClass('wide');
+                }else{                    
+                    $('.menu').removeClass('hide');                
+                    $('.main').removeClass('wide');
+                    $('.icono2.der.cruz').css("display", "none");
+                    $('.menu').css("position", "fixed");                    
+                }
+            }); 
+            
+            $('.men li:has(ul)').click(function(e){
+                e.preventDefault();
+                if($(this).hasClass('activado')){
+                    $(this).removeClass('activado');
+                    $(this).children('ul').slideUp();
+                }else{
+                   $('.men li ul').slideUp();
+                   $('.men li').removeClass('activado');
+                   $(this).addClass('activado');
+                   $(this).children('ul').slideDown();
+                   
+                }
+            });
+        </script>
+    </body>
+</html>

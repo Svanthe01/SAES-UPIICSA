@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+                background-color: yellow;
+            }
+            form input, form select, form textarea {
+                border-radius: 5px;
+                font-family: "Roboto", sans-serif;
+                outline: 0;
+                background:  #ccccff;
+                width: 100%;
+                border: 1px;
+                margin: 0 0 15px;
+                padding: 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }   
+            select{
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                font-family: "Roboto", sans-serif;
+                outline: 0;
+                background:  #ccccff;
+                width: 100%;
+                border: 1px;
+                margin: 0 0 15px;
+                padding: 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="contenedor">
+            <form class="formChat">
+                <input id="asunto" type="text" placeholder="Asunto" required maxlength="35"/>
+                <select id="problematica">
+                    <option value="" disabled selected>Tipo de problematica</option>
+                    <option value="1">Inscripcion</option>
+                    <option value="2">Reincripciones</option>
+                    <option value="3">ETS</option>
+                    <option value="4">ESPA</option>
+                    <option value="5">Creditos</option>
+                    <option value="6">Electivas</option>
+                    <option value="7">Otro</option>
+                </select>
+                <textarea placeholder="Descripcion" id="descrip" required></textarea>
+            </form> 
+            <button class="but">Enviar</button>
+        </div>
+        <script src="../utileria/librerias/jquery3.6.1.js"></script>       
+        <script>
+            $(".but").click(function(){
+                if(($('#asunto').val().length === 0) && ($('#descrip').val().length === 0) && ($('#problematica').val().trim() === '')){
+                    alert("campos vacios");
+                }else{
+                    var select = $('#problematica').val().trim();
+                    alert(select);
+                }                   
+            });
+                      
+        </script>
+    </body>
+</html>
